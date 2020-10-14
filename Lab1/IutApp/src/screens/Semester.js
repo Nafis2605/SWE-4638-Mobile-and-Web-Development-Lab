@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, StyleSheet, Button, ScrollView, View } from 'react-native';
 
+const Separator = () => (
+    <View style={styles.separator} />
+);
 
 const Semester = (props) => {
     return (
@@ -16,6 +19,7 @@ const Semester = (props) => {
                         }
                     }
                 />
+                <Separator />
 
                 <Button
                     title='2nd Semester'
@@ -27,7 +31,7 @@ const Semester = (props) => {
                         }
                     }
                 />
-
+                <Separator />
                 <Button
                     title='3rd Semester'
                     color='#1e847f'
@@ -51,12 +55,16 @@ const styles = StyleSheet.create(
         },
         ViewStyle: {
             margin: 20,
+            marginTop: 40,
 
         },
         TextStyle: {
             fontSize: 20,
             color: '#1e3d59',
             textAlign: "center",
+        },
+        separator: {
+            marginVertical: 10,
         },
 
     }
