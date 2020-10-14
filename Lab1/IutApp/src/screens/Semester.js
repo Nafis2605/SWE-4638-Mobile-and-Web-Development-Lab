@@ -6,7 +6,6 @@ const Semester = (props) => {
     return (
         <ScrollView style={styles.ScrollViewStyle}>
             <View style={styles.ViewStyle} >
-                <Separator />
                 <Button
                     title='1st Semester'
                     color='#1e847f'
@@ -16,7 +15,7 @@ const Semester = (props) => {
                         }
                     }
                 />
-                <Separator />
+
                 <Button
                     title='2nd Semester'
                     color='#1e847f'
@@ -27,7 +26,7 @@ const Semester = (props) => {
                         }
                     }
                 />
-                <Separator />
+
                 <Button
                     title='3rd Semester'
                     color='#1e847f'

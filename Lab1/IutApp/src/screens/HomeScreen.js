@@ -29,7 +29,7 @@ const HomeScreen = (props) => {
                 color='#1e847f'
                 onPress={
                     function () {
-
+                        props.navigation.navigate("Semesters");
                         console.log("Semester Button is clicked");
                     }
                 }
