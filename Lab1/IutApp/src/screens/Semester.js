@@ -11,6 +11,7 @@ const Semester = (props) => {
                     color='#1e847f'
                     onPress={
                         function () {
+                            props.navigation.navigate("First Semester");
                             console.log("1st Semester Button is clicked");
                         }
                     }
