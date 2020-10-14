@@ -17,39 +17,41 @@ const Faculty = () => {
         { name: "Ms. Sadia Sharmin", key: "11" },
     ];
     return (
-        <ScrollView style={styles.ScrollViewStyle}>
+        //<ScrollView style={styles.ScrollViewStyle}>
 
-            <FlatList
-                style={styles.FlatListStyle}
-                showsVerticalScrollIndicator={false}
-                data={faculty}
-                renderItem={
-                    function ({ item }) {
-                        return (
-                            <Text style={styles.TextStyle}>{item.key}.  {item.name} </Text>
-                        )
-                    }
+        <FlatList
+            style={styles.FlatListStyle}
+            showsVerticalScrollIndicator={false}
+            data={faculty}
+            renderItem={
+                function ({ item }) {
+                    return (
+                        <Text style={styles.TextStyle}>{item.key}.  {item.name} </Text>
+                    )
                 }
-            />
-
-        </ScrollView>
+            }
+        />
+        //</ScrollView>
     );
 }
 const styles = StyleSheet.create(
     {
-        ScrollViewStyle: {
+        /*ScrollViewStyle: {
             backgroundColor: '#c6d7eb',
-        },
+        },*/
 
         TextStyle: {
             fontSize: 15,
             color: '#1e3d59',
             textAlign: "left",
-            padding: 20,
+            paddingLeft: 20,
+            paddingRight: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
+
         },
         FlatListStyle: {
             textAlign: 'left',
-            margin: 20,
             backgroundColor: '#c6d7eb',
         }
     }

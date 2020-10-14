@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, Button, ScrollView, Image, View } from 'react-native';
 
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
     return (
         <ScrollView style={styles.ScrollViewStyle}>
 
@@ -29,6 +29,7 @@ const HomeScreen = () => {
                 color='#1e847f'
                 onPress={
                     function () {
+
                         console.log("Semester Button is clicked");
                     }
                 }
@@ -39,6 +40,7 @@ const HomeScreen = () => {
                 color='#1e847f'
                 onPress={
                     function () {
+                        props.navigation.navigate("Faculty List");
                         console.log("Faculty Button is clicked");
                     }
                 }
