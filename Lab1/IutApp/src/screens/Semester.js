@@ -22,7 +22,7 @@ const Semester = (props) => {
                     color='#1e847f'
                     onPress={
                         function () {
-
+                            props.navigation.navigate("Second Semester");
                             console.log("2nd Semester Button is clicked");
                         }
                     }
