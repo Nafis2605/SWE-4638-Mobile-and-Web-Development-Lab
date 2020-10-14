@@ -1,58 +1,59 @@
 import React from 'react';
-import { Text, StyleSheet, Button, ScrollView, Image, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, Button, ScrollView, Image, View, TouchableOpacity, SafeAreaView } from 'react-native';
 
+const Separator = () => (
+    <View style={styles.separator} />
+);
 
 const HomeScreen = (props) => {
     return (
         <ScrollView style={styles.ScrollViewStyle}>
-
-            <View>
+            <SafeAreaView style={styles.SafeAreaViewStyle}>
 
                 <Image
                     style={styles.ImageStyle}
                     source={
                         require("../../assets/Images/IUT_Logo.png")}
                 />
+                <Text style={styles.TextStyle}> Department of CSE</Text>
+                <Text style={styles.TextStyle}> Programme: SWE</Text>
 
-            </View>
-
-            <Text style={styles.TextStyle}> Department of CSE</Text>
-            <Text style={styles.TextStyle}> Programme: SWE</Text>
-
-
-            <TouchableOpacity
-                onPress={
-                    function () {
-                        props.navigation.navigate("Profile");
-                        console.log("Profile was clicked");
+                <Separator />
+                <TouchableOpacity
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Profile");
+                            console.log("Profile was clicked");
+                        }
                     }
-                }
-            >
-                <Text style={styles.ProfileStyle}> Profile </Text>
+                >
+                    <Text style={styles.ProfileStyle}> Profile </Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>
+                <Separator />
 
-            <Button
-                title='Semester Wise Course List'
-                color='#1e847f'
-                onPress={
-                    function () {
-                        props.navigation.navigate("Semesters");
-                        console.log("Semester Button is clicked");
+                <Button
+                    title='Semester Wise Course List'
+                    color='#1e847f'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Semesters");
+                            console.log("Semester Button is clicked");
+                        }
                     }
-                }
-            />
-            <Button
-                title='List of Faculty Members'
-                color='#1e847f'
-                onPress={
-                    function () {
-                        props.navigation.navigate("Faculty List");
-                        console.log("Faculty Button is clicked");
+                />
+                <Separator />
+                <Button
+                    title='List of Faculty Members'
+                    color='#1e847f'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Faculty List");
+                            console.log("Faculty Button is clicked");
+                        }
                     }
-                }
-            />
-
+                />
+            </SafeAreaView>
         </ScrollView>
     )
 }
@@ -82,6 +83,12 @@ const styles = StyleSheet.create(
             borderWidth: 5,
             fontWeight: "bold",
             paddingTop: 5
+        },
+        SafeAreaViewStyle: {
+            margin: 20,
+        },
+        separator: {
+            marginVertical: 10,
         },
     }
 )
