@@ -10,40 +10,40 @@ const Profile = () => {
 
     ];
     return (
-        <ScrollView style={styles.ScrollViewStyle}>
-            <View style={styles.ViewStyle}>
 
-                <Image
-                    style={styles.ImageStyle}
-                    source={require("../../assets/Images/ProfilePicture.jpg")}
-                />
-            </View>
+        <View style={styles.ViewStyle}>
 
-            <View style={styles.ViewStyle}>
-                <FlatList
-                    style={styles.FlatListStyle}
-                    showsVerticalScrollIndicator={false}
-                    data={profile}
-                    renderItem={
-                        function ({ item }) {
-                            return (
-                                <Text style={styles.TextStyle}>{item.key}: {item.value}</Text>
-                            )
-                        }
+            <Image
+                style={styles.ImageStyle}
+                source={require("../../assets/Images/ProfilePicture.jpg")}
+            />
+
+            <FlatList
+                style={styles.FlatListStyle}
+                showsVerticalScrollIndicator={false}
+                data={profile}
+                renderItem={
+                    function ({ item }) {
+                        return (
+                            <Text style={styles.TextStyle}>{item.key}: {item.value}</Text>
+                        )
                     }
-                />
-            </View>
-        </ScrollView >
+                }
+            />
+        </View>
+
     )
 }
 
 const styles = StyleSheet.create(
     {
-        ScrollViewStyle: {
+        ViewStyle: {
             backgroundColor: '#c6d7eb',
+            //margin: 30,
+            flex: 1,
         },
         TextStyle: {
-            fontSize: 15,
+            fontSize: 20,
             color: '#1e3d59',
             textAlign: "left",
             paddingLeft: 20,
@@ -56,11 +56,12 @@ const styles = StyleSheet.create(
             height: 280,
             width: 330,
             borderColor: '#f47a60',
-            borderWidth: 4
+            borderWidth: 4,
+            margin: 30
         },
         FlatListStyle: {
             textAlign: 'left',
-            backgroundColor: '#c6d7eb',
+            margin: 30
         }
     }
 )
