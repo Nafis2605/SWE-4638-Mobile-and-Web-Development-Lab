@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, Button, ScrollView, Image, View } from 'react-native';
+import { Text, StyleSheet, Button, ScrollView, Image, View, TouchableOpacity } from 'react-native';
 
 
 const HomeScreen = (props) => {
@@ -20,9 +20,17 @@ const HomeScreen = (props) => {
             <Text style={styles.TextStyle}> Programme: SWE</Text>
 
 
+            <TouchableOpacity
+                onPress={
+                    function () {
+                        props.navigation.navigate("Profile");
+                        console.log("Profile was clicked");
+                    }
+                }
+            >
+                <Text style={styles.ProfileStyle}> Profile </Text>
 
-
-            <Text style={styles.TextStyle}> Profile </Text>
+            </TouchableOpacity>
 
             <Button
                 title='Semester Wise Course List'
@@ -34,7 +42,6 @@ const HomeScreen = (props) => {
                     }
                 }
             />
-
             <Button
                 title='List of Faculty Members'
                 color='#1e847f'
@@ -65,6 +72,16 @@ const styles = StyleSheet.create(
             alignSelf: "center",
             height: 340,
             width: 200,
+        },
+        ProfileStyle: {
+            fontSize: 40,
+            color: '#ff6e40',
+            textAlign: "center",
+            borderColor: '#1e3d59',
+            borderRadius: 5,
+            borderWidth: 5,
+            fontWeight: "bold",
+            paddingTop: 5
         },
     }
 )
