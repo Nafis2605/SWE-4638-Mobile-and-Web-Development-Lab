@@ -1,10 +1,13 @@
 import React from "react"
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
+import { Dimensions, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 
 const Images = (props) => {
+    /* const dim = Dimensions.get("screen");
+    console.log(dim.height);
+    console.log(dim.width); */
+
     return (
         <ScrollView>
-
             <Image
                 resizeMode='contain'
                 source={
