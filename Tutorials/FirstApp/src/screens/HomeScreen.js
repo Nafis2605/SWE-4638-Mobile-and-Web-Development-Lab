@@ -32,6 +32,16 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Separator />
+                <Button
+                    title='Reuse Images'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Reuse Images")
+                            console.log("Reuse Image Buttion is clicked!")
+                        }
+                    }
+                />
             </View>
         </ScrollView>
     )

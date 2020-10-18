@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import HomeScreen from './src/screens/HomeScreen';
 import FlatListScreen from './src/screens/FlatListScreen';
 import Images from './src/screens/Images';
+import ReuseImageScreen from './src/screens/ReuseImageScreen';
 
 const stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ function App() {
         <stack.Screen name="Home" component={HomeScreen} />
         <stack.Screen name="Flat List" component={FlatListScreen} />
         <stack.Screen name="Images" component={Images} />
+        <stack.Screen name="Reuse Images" component={ReuseImageScreen} />
       </stack.Navigator>
     </NavigationContainer>
   )
