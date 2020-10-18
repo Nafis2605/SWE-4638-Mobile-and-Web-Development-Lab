@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, ScrollView, StyleSheet } from "react-native"
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 
 const Images = (props) => {
     return (
@@ -16,13 +16,20 @@ const Images = (props) => {
                 }
                 style={styles.ImageStyle}
             />
-            < Image
-                resizeMode='contain'
-                source={require("./../../assets/pic/IUT_Logo.png")}
-                style={styles.ImageStyle}
+            <TouchableOpacity
+                onPress={
+                    function () {
+                        props.navigation.navigate("Flat List");
+                    }
+                }
+            >
+                < Image
+                    resizeMode='contain'
+                    source={require("./../../assets/pic/IUT_Logo.png")}
+                    style={styles.ImageStyle}
 
-            />
-
+                />
+            </TouchableOpacity>
         </ScrollView>
     )
 }
