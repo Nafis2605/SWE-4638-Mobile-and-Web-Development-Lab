@@ -1,12 +1,18 @@
 import React from 'react';
 import { Text, StyleSheet, Button, ScrollView, View } from 'react-native';
 
+const Separator = () => {
+    return (
+        <View style={styles.SeparatorStyle} />
+    );
+}
+
 const HomeScreen = (props) => {
     return (
         <ScrollView style={styles.ScrollViewStyle} >
             <View style={styles.ViewStyle}>
                 <Text style={styles.TextStyle}> First App with React Native </Text>
-
+                <Separator />
                 <Button
                     title='University List'
                     onPress={
@@ -16,6 +22,7 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Separator />
                 <Button
                     title='Images'
                     onPress={
@@ -44,6 +51,9 @@ const styles = StyleSheet.create(
         ScrollViewStyle: {
             backgroundColor: "#FFDEAD",
         },
+        SeparatorStyle: {
+            marginVertical: 5
+        }
     }
 );
 export default HomeScreen;
