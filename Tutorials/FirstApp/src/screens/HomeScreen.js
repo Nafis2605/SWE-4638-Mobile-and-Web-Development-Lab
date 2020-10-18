@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, Button, ScrollView, View } from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
     return (
         <ScrollView style={styles.ScrollViewStyle} >
             <View style={styles.ViewStyle}>
@@ -11,6 +11,7 @@ const HomeScreen = () => {
                     title='University List'
                     onPress={
                         function () {
+                            props.navigation.navigate("Flat List")
                             console.log("University List Buttion is clicked!")
                         }
                     }
