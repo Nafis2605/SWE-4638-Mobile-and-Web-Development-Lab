@@ -42,6 +42,16 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Separator />
+                <Button
+                    title='Async Storage'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Async Storage")
+                            console.log("Async Storage Buttion is clicked!")
+                        }
+                    }
+                />
             </View>
         </ScrollView>
     )
