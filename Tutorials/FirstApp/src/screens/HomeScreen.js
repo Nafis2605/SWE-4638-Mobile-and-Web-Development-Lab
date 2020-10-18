@@ -16,6 +16,15 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Button
+                    title='Images'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Images")
+                            console.log("Images Buttion is clicked!")
+                        }
+                    }
+                />
             </View>
         </ScrollView>
     )
