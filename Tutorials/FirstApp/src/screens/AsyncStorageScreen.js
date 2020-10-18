@@ -24,7 +24,7 @@ const AsyncStorageScreen = () => {
         try {
             value = JSON.stringify(value)
             await AsyncStorage.setItem(key, value);
-            console.log("Data is saved successfully!");
+            alert("Data is saved successfully!");
         }
 
         catch (error) {
@@ -40,10 +40,10 @@ const AsyncStorageScreen = () => {
 
             if (data != null) {
                 data = JSON.parse(data)
-                console.log(data)
+                alert(data.CourseName)
             }
             else {
-                console.log("No data exists!")
+                alert("No data exists!")
             }
         }
         catch (error) {
@@ -53,7 +53,7 @@ const AsyncStorageScreen = () => {
     const removeData = async (key) => {
         try {
             await AsyncStorage.removeItem(key);
-            console.log("Data is removed!")
+            alert("Data is removed!")
         } catch (error) {
             console.log(error)
         }
@@ -67,8 +67,8 @@ const AsyncStorageScreen = () => {
                     title="Save Data"
                     onPress={
                         function () {
-                            setData("Course Info", { CourseCode: "SWE 4637", CourseName: "Mobile and Web Development" });
-                            console.log("Get Data is clicked!");
+                            setData("CourseInfo", { CourseCode: "SWE 4637", CourseName: "Mobile and Web Development" });
+                            console.log("Save Data is clicked!");
                         }
                     }
                 />
@@ -77,7 +77,7 @@ const AsyncStorageScreen = () => {
                     title="Retrieve Data"
                     onPress={
                         function () {
-                            getData("Course Info")
+                            getData("CourseInfo")
                             console.log("Retrieve Data is clicked!")
                         }
                     }
@@ -87,8 +87,8 @@ const AsyncStorageScreen = () => {
                     title="Remove Data"
                     onPress={
                         function () {
-                            removeData("Course Info")
-                            console.log("Remove Data is clicked!")
+                            removeData("CourseInfo")
+                            console.log("Remove Data Button is clicked!")
                         }
                     }
                 />
