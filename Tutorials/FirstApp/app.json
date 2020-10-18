@@ -1,4 +1,3 @@
-/* To change the device orientation, the value of orientation should be changed. Possible values are portrait, landscape and default */
 {
   "expo": {
     "name": "FirstApp",
