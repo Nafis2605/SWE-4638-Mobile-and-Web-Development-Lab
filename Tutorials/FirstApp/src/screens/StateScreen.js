@@ -8,7 +8,7 @@ const Separator = () => {
 
 //Three things to consider for state variable - which variable, variable type, initial value 
 
-const StateScreen = () => {
+const StateScreen = (props) => {
     let [Counter, setCounter] = useState(0);
     return (
         <ScrollView style={styles.ScrollViewStyle}>
@@ -33,6 +33,17 @@ const StateScreen = () => {
                         function () {
                             setCounter(Counter - 1);
                             console.log(Counter - 1)
+                        }
+                    }
+                />
+                <Separator />
+                <Separator />
+                <Button
+                    title='Box Screen'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Box Screen")
+                            console.log("Images Buttion is clicked!")
                         }
                     }
                 />
