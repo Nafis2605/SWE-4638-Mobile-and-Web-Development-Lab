@@ -62,6 +62,16 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Separator />
+                <Button
+                    title='Input Screen'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("Input Screen")
+                            console.log("Input Screen Buttion is clicked!")
+                        }
+                    }
+                />
             </View>
         </ScrollView>
     )
