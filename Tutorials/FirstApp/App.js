@@ -5,7 +5,8 @@ import HomeScreen from './src/screens/HomeScreen';
 import FlatListScreen from './src/screens/FlatListScreen';
 import Images from './src/screens/Images';
 import ReuseImageScreen from './src/screens/ReuseImageScreen';
-import AsyncStorageScreen from './src/screens/AsyncStorageScreen'
+import AsyncStorageScreen from './src/screens/AsyncStorageScreen';
+import StateScreen from './src/screens/StateScreen';
 
 const stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function App() {
         <stack.Screen name="Images" component={Images} />
         <stack.Screen name="Reuse Images" component={ReuseImageScreen} />
         <stack.Screen name="Async Storage" component={AsyncStorageScreen} />
+        <stack.Screen name="State Screen" component={StateScreen} />
       </stack.Navigator>
     </NavigationContainer>
   )

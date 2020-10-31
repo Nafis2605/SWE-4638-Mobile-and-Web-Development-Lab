@@ -52,6 +52,16 @@ const HomeScreen = (props) => {
                         }
                     }
                 />
+                <Separator />
+                <Button
+                    title='State Screen'
+                    onPress={
+                        function () {
+                            props.navigation.navigate("State Screen")
+                            console.log("State Screen Buttion is clicked!")
+                        }
+                    }
+                />
             </View>
         </ScrollView>
     )
