@@ -1,13 +1,53 @@
 import React from 'react';
-import { Text, StyleSheet, Button, ScrollView, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Input, Button, Card } from 'react-native-elements'
+import { Zocial, MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const SignUpScreen = (props) => {
     return (
-        <ScrollView style={styles.ScrollViewStyle}>
-            <View style={styles.ViewStyle}>
-                <Text style={styles.TextStyle}>Sign Up Screen</Text>
+        <View style={styles.ViewStyle}>
+            <Card>
+                <Card.Title>Sign Up Free for Auth App! </Card.Title>
+                <Card.Divider />
+                <Input
+                    placeholder="Name"
+                    leftIcon={<MaterialIcons name="person-pin" size={24} color="black" />}
+                />
+                <Input
+                    placeholder="Student ID"
+                    leftIcon={<AntDesign name="idcard" size={24} color="black" />}
+                />
+                <Input
+                    placeholder="Email Address"
+                    leftIcon={<Zocial name="email" size={24} color="black" />}
+                />
+
+                <Input
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    leftIcon={<Entypo name="key" size={24} color="black" />}
+                />
+                <Input
+                    placeholder="Confirm Password"
+                    secureTextEntry={true}
+                    leftIcon={<Entypo name="key" size={24} color="black" />}
+                />
                 <Button
-                    title="Already Have an Account? Sign In!"
+                    icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
+                    title="Sign Up"
+                    type="solid"
+                    onPress={
+                        function () {
+                            props.navigation.navigate("SignIn")
+                            console.log("Sign Up Buttion is clicked!")
+                        }
+                    }
+                />
+                <Card.Divider />
+                <Button
+                    icon={<MaterialCommunityIcons name="location-enter" size={24} color="dodgerblue" />}
+                    title="Already have an account? Sign In!"
+                    type="clear"
                     onPress={
                         function () {
                             props.navigation.navigate("SignIn")
@@ -15,8 +55,8 @@ const SignUpScreen = (props) => {
                         }
                     }
                 />
-            </View>
-        </ScrollView>
+            </Card>
+        </View>
     )
 }
 const styles = StyleSheet.create(
@@ -25,13 +65,13 @@ const styles = StyleSheet.create(
             fontSize: 25,
             color: "#9C27B0",
             textAlign: "center",
+
         },
         ViewStyle: {
-            margin: 20
-        },
 
-        ScrollViewStyle: {
-            backgroundColor: "#FFDEAD",
+            flex: 1,
+            justifyContent: "center",
+            backgroundColor: "rgb(92, 200, 215)"
         },
     }
 );
