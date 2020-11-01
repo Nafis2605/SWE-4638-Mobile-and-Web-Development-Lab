@@ -1,3 +1,14 @@
+//Projet Build
+//expo init [App Name]
+
+//Project Setup
+//npm install @react-navigation/native 
+//npm install @react-navigation/stack
+//expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+//To install Rect native Elements
+//npm install react-native-elements
+
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
@@ -5,6 +16,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import HomeScreen from './src/screens/HomeScreen'
 import SignUpScreen from './src/screens/SignUpScreen';
 import SignInScreen from './src/screens/SignInScreen';
+import { AuthContext, AuthProvider } from './src/providers/AuthProvider'
 
 const HomeStack = createStackNavigator();
 const AuthStack = createStackNavigator();
@@ -26,20 +38,19 @@ const AuthStackScreen = () => {
 }
 function App() {
   return (
-    <NavigationContainer>
-      <AuthStackScreen />
-    </NavigationContainer>
+    <AuthProvider>
+      <AuthContext.Consumer>
+        {
+          (auth) =>
+            (
+              <NavigationContainer>
+                {auth.IsLoggedIn ? <HomeStackScreen /> : <AuthStackScreen />}
+              </NavigationContainer>
+            )
+        }
+      </AuthContext.Consumer>
+    </AuthProvider>
   )
 }
 export default App;
 
-//Projet Build
-//expo init [App Name]
-
-//Project Setup
-//npm install @react-navigation/native 
-//npm install @react-navigation/stack
-//expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-
-//To install Rect native Elements
-//npm install react-native-elements

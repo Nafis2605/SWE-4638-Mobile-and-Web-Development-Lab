@@ -1,5 +1,9 @@
 import React from 'react';
-import { Text, StyleSheet, Button, ScrollView, View } from 'react-native';
+import { Text, StyleSheet, ScrollView, View } from 'react-native';
+import { Button } from "react-native-elements";
+
+import { AuthContext } from '../providers/AuthProvider'
+
 
 const Separator = () => {
     return (
@@ -8,11 +12,28 @@ const Separator = () => {
 }
 const HomeScreen = () => {
     return (
-        <ScrollView style={styles.ScrollViewStyle}>
-            <View style={styles.ViewStyle}>
-                <Text style={styles.TextStyle}>Home Screen</Text>
-            </View>
-        </ScrollView>
+        <AuthContext.Consumer>
+            {
+                (auth) =>
+                    (
+                        <ScrollView style={styles.ScrollViewStyle}>
+                            <View style={styles.ViewStyle}>
+                                <Text style={styles.TextStyle}>Home Screen</Text>
+                                <Button
+                                    type="outline"
+                                    title="Log Out"
+                                    onPress={
+                                        function () {
+                                            auth.setIsLoggedIn(false);
+                                        }
+                                    }
+
+                                />
+                            </View>
+                        </ScrollView>
+                    )
+            }
+        </AuthContext.Consumer>
     )
 }
 const styles = StyleSheet.create(
