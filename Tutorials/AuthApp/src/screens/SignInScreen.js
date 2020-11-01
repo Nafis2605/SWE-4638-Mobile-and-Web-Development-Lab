@@ -1,0 +1,65 @@
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Input, Button, Card } from 'react-native-elements'
+import { Zocial } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+
+const SignInScreen = (props) => {
+    return (
+        <View style={styles.ViewStyle}>
+            <Card>
+                <Card.Title>Welcome to Auth App </Card.Title>
+                <Card.Divider />
+                <Input
+                    placeholder="Email Address"
+                    leftIcon={<Zocial name="email" size={24} color="black" />}
+                />
+                <Input
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    leftIcon={<Entypo name="key" size={24} color="black" />}
+                />
+                <Button
+                    icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
+                    title="Sign In"
+                    type="solid"
+                    onPress={
+                        function () {
+                            console.log("Sign In Buttion is clicked!")
+                        }
+                    }
+                />
+                <Card.Divider />
+                <Button
+                    icon={<Entypo name="emoji-sad" size={24} color="dodgerblue" />}
+                    title="Don't have an account? Sign Up!"
+                    type="clear"
+                    onPress={
+                        function () {
+                            props.navigation.navigate("SignUp")
+                            console.log("Sign Up Buttion is clicked!")
+                        }
+                    }
+                />
+            </Card>
+        </View>
+    )
+}
+const styles = StyleSheet.create(
+    {
+        TextStyle: {
+            fontSize: 25,
+            color: "#9C27B0",
+            textAlign: "center",
+
+        },
+        ViewStyle: {
+
+            flex: 1,
+            justifyContent: "center",
+            backgroundColor: "rgb(92, 200, 215)"
+        },
+    }
+);
+export default SignInScreen;
