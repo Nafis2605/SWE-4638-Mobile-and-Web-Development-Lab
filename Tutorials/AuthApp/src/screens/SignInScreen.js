@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from "react";
 import { StyleSheet, View } from 'react-native';
 import { Input, Button, Card } from 'react-native-elements'
 import { Zocial, MaterialIcons, Entypo } from '@expo/vector-icons';
 
 import { AuthContext } from '../providers/AuthProvider'
+import { getData } from '../functions/AsyncStorageFunctions'
 
 const SignInScreen = (props) => {
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
     return (
         <AuthContext.Consumer>
             {
@@ -18,19 +21,37 @@ const SignInScreen = (props) => {
                                 <Input
                                     placeholder="Email Address"
                                     leftIcon={<Zocial name="email" size={24} color="black" />}
+                                    onChangeText={
+                                        function (currentInput) {
+                                            setEmail(currentInput);
+                                        }
+                                    }
                                 />
                                 <Input
                                     placeholder="Password"
                                     secureTextEntry={true}
                                     leftIcon={<Entypo name="key" size={24} color="black" />}
+                                    onChangeText={
+                                        function (currentInput) {
+                                            setPassword(currentInput);
+                                        }
+                                    }
                                 />
                                 <Button
                                     icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
                                     title="Sign In"
                                     type="solid"
                                     onPress={
-                                        function () {
-                                            auth.setIsLoggedIn(true);
+                                        async function () {
+                                            let userData = await getData(Email);
+                                            if (userData.password == Password) {
+                                                auth.setIsLoggedIn(true);
+                                                auth.setCurrentUser(userData);
+                                            }
+                                            else {
+                                                alert("Sign in Failed!");
+                                                console.log(userData);
+                                            }
                                             console.log("Sign In Buttion is clicked!")
                                         }
                                     }

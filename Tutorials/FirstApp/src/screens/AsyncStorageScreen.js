@@ -1,5 +1,6 @@
 import React from "react"
-import { View, Button, ScrollView, StyleSheet, Text, AsyncStorage } from "react-native"
+import { View, Button, ScrollView, StyleSheet, Text } from "react-native"
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Separator = () => {
     return (
@@ -8,7 +9,7 @@ const Separator = () => {
 }
 
 const AsyncStorageScreen = () => {
-    //the for loop is inside the await function. It will run concurrently. 
+    //the for loop is inside the await function    . It will run concurrently. 
     /* let func = async () => {
         let i = 0;
         await function () {

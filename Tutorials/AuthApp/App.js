@@ -16,7 +16,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import HomeScreen from './src/screens/HomeScreen'
 import SignUpScreen from './src/screens/SignUpScreen';
 import SignInScreen from './src/screens/SignInScreen';
-import { AuthContext, AuthProvider } from './src/providers/AuthProvider'
+import { AuthContext, AuthProvider } from './src/providers/AuthProvider';
 
 const HomeStack = createStackNavigator();
 const AuthStack = createStackNavigator();

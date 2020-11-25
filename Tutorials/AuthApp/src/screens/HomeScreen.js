@@ -25,9 +25,10 @@ const HomeScreen = () => {
                                     onPress={
                                         function () {
                                             auth.setIsLoggedIn(false);
+                                            auth.setCurrentUser({})
+                                            console.log("Log Out Button is clicked!")
                                         }
                                     }
-
                                 />
                             </View>
                         </ScrollView>
