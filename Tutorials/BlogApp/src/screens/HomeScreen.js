@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { Card, Button, Text, Avatar, Input } from "react-native-elements";
+import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { AuthContext } from "../providers/AuthProvider";
@@ -17,12 +17,34 @@ const HomeScreen = (props) => {
             {
                 (auth) =>
                     (
-                        <ScrollView style={styles.ScrollViewStyle}>
+                        <View style={styles.ViewStyle}>
+                            <Header
+                                leftComponent={{
+                                    icon: "menu",
+                                    color: "#fff",
+                                    onPress: function () {
+                                        props.navigation.toggleDrawer();
+                                    }
+                                }}
+                                centerComponent={
+                                    { text: "Blog App", style: { color: "#fff" } }
+                                }
+                                rightComponent={
+                                    {
+                                        icon: "lock-outline",
+                                        color: "#fff",
+                                        onPress: function () {
+                                            auth.setIsLoggedIn(false);
+                                            auth.setCurrentUser({});
+                                        }
+                                    }}
+                            />
 
                             <Card>
                                 <Input
                                     placeholder="What's On Your Mind?"
                                     leftIcon={<Entypo name="pencil" size={24} color="black" />}
+                                    multiline={true}
                                 />
                                 <Button title="Post"
                                     type="outline"
@@ -67,34 +89,7 @@ const HomeScreen = (props) => {
                                     <Button type="solid" title="Comment (10)" />
                                 </View>
                             </Card>
-
-                            <Separator />
-
-                            <View style={styles.ViewStyle}>
-                                <Button
-                                    type="solid"
-                                    title="Notification"
-                                    onPress={
-                                        function () {
-                                            props.navigation.navigate("Notification")
-                                            console.log("Notification Button is clicked!")
-                                        }
-                                    }
-                                />
-                                <Separator />
-                                <Button
-                                    type="outline"
-                                    title="Log Out"
-                                    onPress={
-                                        function () {
-                                            auth.setIsLoggedIn(false);
-                                            auth.setCurrentUser({})
-                                            console.log("Log Out Button is clicked!")
-                                        }
-                                    }
-                                />
-                            </View>
-                        </ScrollView>
+                        </View>
                     )
             }
         </AuthContext.Consumer>
@@ -108,12 +103,10 @@ const styles = StyleSheet.create(
             textAlign: "center",
         },
         ViewStyle: {
-            margin: 20
-        },
-
-        ScrollViewStyle: {
+            flex: 1,
             backgroundColor: "#e2e7fe"
         },
+
         SeparatorStyle: {
             marginVertical: 5
         }
