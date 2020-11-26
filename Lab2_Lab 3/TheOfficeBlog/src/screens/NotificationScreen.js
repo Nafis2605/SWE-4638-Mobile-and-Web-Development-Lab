@@ -12,7 +12,7 @@ const NotificationScreen = (props) => {
                             icon: "menu",
                             color: "#fff",
                             onPress: function () {
-                                //props.navigation.toggleDrawer();
+                                props.navigation.toggleDrawer();
                             }
                         }}
                         centerComponent={
