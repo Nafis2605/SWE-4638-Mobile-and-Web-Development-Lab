@@ -1,12 +1,13 @@
-import React from 'react';
-import { StyleSheet, ScrollView, View, } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, ScrollView, View, FlatList } from 'react-native';
 import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { AuthContext } from "../providers/AuthProvider";
 import PostCard from "./../components/PostCard";
 import HeaderHome from "../components/HeaderHome";
-
+import { getPosts } from "./../requests/Posts";
+import { getUsers } from "./../requests/Users";
 
 const Separator = () => {
     return (
@@ -14,6 +15,43 @@ const Separator = () => {
     );
 }
 const HomeScreen = (props) => {
+    const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
+
+    const loadPosts = async () => {
+        const response = await getPosts();
+        if (response.ok) {
+            setPosts(response.data)
+        }
+        else {
+            alert(response.problem);
+        }
+    };
+
+    const loadUsers = async () => {
+        const response = await getUsers();
+        if (response.ok) {
+            setUsers(response.data)
+        }
+        else {
+            alert(response.problem);
+        }
+    };
+    const getName = (id) => {
+        let name = "";
+        users.forEach((element) => {
+            if (element.id == id) {
+                name = element.name;
+            }
+        });
+        return name;
+    };
+
+    useEffect(() => {
+        loadPosts();
+        loadUsers();
+    }, []);
+
     return (
         <AuthContext.Consumer>
             {
@@ -40,11 +78,23 @@ const HomeScreen = (props) => {
                                         }}
                                 />
                             </Card>
-                            <PostCard
-                                author="Fahim Arsad Nafis"
-                                title="My First Post"
-                                body="Hello World!"
+
+                            <FlatList
+                                data={posts}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={
+                                    ({ item }) => {
+                                        return (
+                                            <PostCard
+                                                author={getName(item.userId)}
+                                                title={item.title}
+                                                body={item.body}
+                                            />
+                                        )
+                                    }
+                                }
                             />
+
                         </View>
                     )
             }
