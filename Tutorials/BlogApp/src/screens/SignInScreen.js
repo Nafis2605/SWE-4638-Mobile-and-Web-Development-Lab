@@ -6,73 +6,89 @@ import { Zocial, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { AuthContext } from '../providers/AuthProvider'
 import * as firebase from "firebase"
 
+import Loading from "../components/Loading"
+
 const SignInScreen = (props) => {
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
-    return (
-        <AuthContext.Consumer>
-            {
-                (auth) =>
-                    (
-                        <View style={styles.ViewStyle}>
-                            <Card>
-                                <Card.Title>Welcome to Blog App </Card.Title>
-                                <Card.Divider />
-                                <Input
-                                    placeholder="Email Address"
-                                    leftIcon={<Zocial name="email" size={24} color="black" />}
-                                    onChangeText={
-                                        function (currentInput) {
-                                            setEmail(currentInput);
+    const [isLoading, setisLoading] = useState(false);
+    if (isLoading) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <AuthContext.Consumer>
+                {
+                    (auth) =>
+                        (
+                            <View style={styles.ViewStyle}>
+                                <Card>
+                                    <Card.Title>Welcome to Blog App </Card.Title>
+                                    <Card.Divider />
+                                    <Input
+                                        placeholder="Email Address"
+                                        leftIcon={<Zocial name="email" size={24} color="black" />}
+                                        onChangeText={
+                                            function (currentInput) {
+                                                setEmail(currentInput);
+                                            }
                                         }
-                                    }
-                                />
-                                <Input
-                                    placeholder="Password"
-                                    secureTextEntry={true}
-                                    leftIcon={<Entypo name="key" size={24} color="black" />}
-                                    onChangeText={
-                                        function (currentInput) {
-                                            setPassword(currentInput);
+                                    />
+                                    <Input
+                                        placeholder="Password"
+                                        secureTextEntry={true}
+                                        leftIcon={<Entypo name="key" size={24} color="black" />}
+                                        onChangeText={
+                                            function (currentInput) {
+                                                setPassword(currentInput);
+                                            }
                                         }
-                                    }
-                                />
-                                <Button
-                                    icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
-                                    title="Sign In"
-                                    type="solid"
-                                    onPress={() => {
-                                        firebase.auth().signInWithEmailAndPassword(Email, Password)
-                                            .then(
-                                                (userCreds) => {
-                                                    auth.setIsLoggedIn(true)
-                                                    auth.setCurrentUser(userCreds.user)
-                                                }
-                                            )
-                                            .catch((error) => {
-                                                alert(error)
-                                            })
-                                    }
-                                    }
-                                />
-                                <Card.Divider />
-                                <Button
-                                    icon={<Entypo name="emoji-sad" size={24} color="dodgerblue" />}
-                                    title="Don't have an account? Sign Up!"
-                                    type="clear"
-                                    onPress={
-                                        function () {
-                                            props.navigation.navigate("SignUp")
-                                            console.log("Sign Up Buttion is clicked!")
+                                    />
+                                    <Button
+                                        icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
+                                        title="Sign In"
+                                        type="solid"
+                                        onPress={() => {
+                                            setisLoading(true);
+                                            firebase
+                                                .auth()
+                                                .signInWithEmailAndPassword(Email, Password)
+                                                .then(
+
+                                                    (userCreds) => {
+                                                        setisLoading(false);
+                                                        auth.setIsLoggedIn(true)
+                                                        auth.setCurrentUser(userCreds.user)
+                                                    }
+                                                )
+                                                .catch((error) => {
+                                                    setisLoading(false);
+                                                    alert(error)
+                                                })
                                         }
-                                    }
-                                />
-                            </Card>
-                        </View>
-                    )
-            }
-        </AuthContext.Consumer >
-    )
+                                        }
+                                    />
+                                    <Card.Divider />
+                                    <Button
+                                        icon={<Entypo name="emoji-sad" size={24} color="dodgerblue" />}
+                                        title="Don't have an account? Sign Up!"
+                                        type="clear"
+                                        onPress={
+                                            function () {
+                                                props.navigation.navigate("SignUp")
+                                                console.log("Sign Up Buttion is clicked!")
+                                            }
+                                        }
+                                    />
+                                </Card>
+                            </View>
+                        )
+                }
+            </AuthContext.Consumer >
+        )
+    }
 }
 const styles = StyleSheet.create(
     {
