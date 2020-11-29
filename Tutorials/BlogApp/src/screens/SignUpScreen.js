@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Input, Button, Card } from 'react-native-elements'
 import { Zocial, MaterialIcons, Entypo, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-
-import { storeData } from "../functions/AsyncStorageFunctions"
-
+import * as firebase from "firebase"
 const SignUpScreen = (props) => {
     const [Name, setName] = useState("");
     const [Sid, setSID] = useState("");
@@ -58,19 +56,40 @@ const SignUpScreen = (props) => {
                     icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
                     title="Sign Up"
                     type="solid"
-                    onPress={
-                        function () {
-                            let currentUser = {
-                                name: Name,
-                                sid: Sid,
-                                email: Email,
-                                password: Password,
-                            };
-                            storeData(Email, currentUser)
-                            props.navigation.navigate("SignIn")
-                            console.log("Sign Up Buttion is clicked!")
-                            alert("Successful Sign up!")
+                    onPress={() => {
+                        if (Name && Sid && Email && Password) {
+                            firebase.auth().createUserWithEmailAndPassword(Email, Password)
+                                .then((userCreds) => {
+                                    userCreds.user.updateProfile({ displayName: Name });
+                                    firebase.database().
+                                        ref().
+                                        child('/users').
+                                        child(userCreds.user.uid).
+                                        set({
+                                            name: Name,
+                                            sid: Sid,
+                                            email: Email
+                                        })
+                                        .then(() => {
+                                            alert("Account Created Successfully!")
+                                            console.log(userCreds.user)
+                                            props.navigation.navigate("SignIn")
+                                        })
+                                        .catch((error) => {
+                                            alert(error);
+                                        }
+                                        );
+                                })
+                                .catch((error) => {
+                                    alert(error)
+                                }
+                                )
+
                         }
+                        else {
+                            alert("Field can not be empty!")
+                        }
+                    }
                     }
                 />
                 <Card.Divider />

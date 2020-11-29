@@ -4,7 +4,7 @@ import { Input, Button, Card } from 'react-native-elements'
 import { Zocial, MaterialIcons, Entypo } from '@expo/vector-icons';
 
 import { AuthContext } from '../providers/AuthProvider'
-import { getData } from '../functions/AsyncStorageFunctions'
+import * as firebase from "firebase"
 
 const SignInScreen = (props) => {
     const [Email, setEmail] = useState("");
@@ -41,19 +41,18 @@ const SignInScreen = (props) => {
                                     icon={<MaterialIcons name="perm-identity" size={24} color="white" />}
                                     title="Sign In"
                                     type="solid"
-                                    onPress={
-                                        async function () {
-                                            let userData = await getData(Email);
-                                            if (userData.password == Password) {
-                                                auth.setIsLoggedIn(true);
-                                                auth.setCurrentUser(userData);
-                                            }
-                                            else {
-                                                alert("Sign in Failed!");
-                                                console.log(userData);
-                                            }
-                                            console.log("Sign In Buttion is clicked!")
-                                        }
+                                    onPress={() => {
+                                        firebase.auth().signInWithEmailAndPassword(Email, Password)
+                                            .then(
+                                                (userCreds) => {
+                                                    auth.setIsLoggedIn(true)
+                                                    auth.setCurrentUser(userCreds.user)
+                                                }
+                                            )
+                                            .catch((error) => {
+                                                alert(error)
+                                            })
+                                    }
                                     }
                                 />
                                 <Card.Divider />
