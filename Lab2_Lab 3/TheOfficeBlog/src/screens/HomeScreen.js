@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View, } from 'react-native';
 import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
 
@@ -6,6 +6,7 @@ import { AntDesign, Entypo } from "@expo/vector-icons";
 import { AuthContext } from "../providers/AuthProvider";
 import PostCard from "./../components/PostCard";
 import HeaderHome from "../components/HeaderHome";
+import { storeData, getData, removeData, getPostID, getPosts } from "../functions/AsyncStorageFunctions"
 
 
 const Separator = () => {
@@ -14,6 +15,8 @@ const Separator = () => {
     );
 }
 const HomeScreen = (props) => {
+    const [post, setPost] = useState([]);
+    const [user, setUser] = useState([]);
     return (
         <AuthContext.Consumer>
             {
