@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet, AsyncStorage } from "react-native";
+import { View, StyleSheet, } from "react-native";
 import { Text, Card, Button, Avatar, Header } from "react-native-elements";
 import { AuthContext } from "../providers/AuthProvider";
 import HeaderHome from "../components/HeaderHome";
-import NotificationCard from "../components/NotificationCard";
+import PostCard from "./../components/PostCard";
 
-const NotificationScreen = (props) => {
+const PostScreen = (props) => {
     return (
         <AuthContext.Consumer>
             {(auth) => (
@@ -16,9 +16,14 @@ const NotificationScreen = (props) => {
                         }}
                     />
 
-                    <NotificationCard
-                        author="Fahim Arsad Nafis"
-                    />
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <PostCard
+                            author="Fahim Arsad Nafis"
+                            title="My First Post"
+                            body="Hello World!"
+                        />
+                    </View>
+
                 </View>
             )}
         </AuthContext.Consumer>
@@ -36,4 +41,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NotificationScreen;
+export default PostScreen;

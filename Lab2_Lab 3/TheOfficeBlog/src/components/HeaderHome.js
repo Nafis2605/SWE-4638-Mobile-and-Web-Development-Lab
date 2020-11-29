@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { Header } from "react-native-elements";
 
 import { AuthContext } from "../providers/AuthProvider";

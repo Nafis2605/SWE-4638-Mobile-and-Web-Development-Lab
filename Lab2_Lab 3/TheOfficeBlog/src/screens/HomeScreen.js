@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, } from 'react-native';
 import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
 
@@ -17,6 +17,9 @@ const Separator = () => {
 const HomeScreen = (props) => {
     const [post, setPost] = useState([]);
     const [user, setUser] = useState([]);
+
+
+
     return (
         <AuthContext.Consumer>
             {
@@ -47,6 +50,9 @@ const HomeScreen = (props) => {
                                 author="Fahim Arsad Nafis"
                                 title="My First Post"
                                 body="Hello World!"
+                                ShowPostScreen={() => {
+                                    props.navigation.navigate("PostScreen");
+                                }}
                             />
                         </View>
                     )

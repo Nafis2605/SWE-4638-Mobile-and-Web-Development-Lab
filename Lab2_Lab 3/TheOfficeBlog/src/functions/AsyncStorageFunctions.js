@@ -32,4 +32,26 @@ const removeData = async (key) => {
     }
 }
 
-export { storeData, getData, removeData };
+const getPostID = async () => {
+    let postID = []
+    try {
+        postID = await AsyncStorage.getAllKeys()
+        return postID;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getPosts = async () => {
+    let postID = await getPostID();
+    let posts = []
+    postID.forEach(async (postID) => {
+        if (postID.startsWith('post')) {
+            posts.push(await getData(postID))
+            return posts;
+        }
+    }
+    );
+}
+
+export { storeData, getData, removeData, getPostID, getPosts };
