@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, FlatList, ActivityIndicator } from 'react-native';
 import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { AuthContext } from "../providers/AuthProvider";
@@ -15,9 +16,17 @@ const Separator = () => {
     );
 }
 const HomeScreen = (props) => {
+
+    const netInfo = useNetInfo();
+    if (netInfo.type != "unknown" && !(netInfo.isInternetReachable)) {
+        alert("No Internet!")
+    }
+
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+
+
 
     const loadPosts = async () => {
         setLoading(true)
