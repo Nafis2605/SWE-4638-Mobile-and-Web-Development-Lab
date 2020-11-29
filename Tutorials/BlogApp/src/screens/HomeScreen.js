@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, FlatList } from 'react-native';
+import { StyleSheet, ScrollView, View, FlatList, ActivityIndicator } from 'react-native';
 import { Card, Button, Text, Avatar, Input, Header } from "react-native-elements";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
@@ -17,8 +17,10 @@ const Separator = () => {
 const HomeScreen = (props) => {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const loadPosts = async () => {
+        setLoading(true)
         const response = await getPosts();
         if (response.ok) {
             setPosts(response.data)
@@ -36,6 +38,7 @@ const HomeScreen = (props) => {
         else {
             alert(response.problem);
         }
+        setLoading(false)
     };
     const getName = (id) => {
         let name = "";
@@ -78,6 +81,12 @@ const HomeScreen = (props) => {
                                         }}
                                 />
                             </Card>
+
+                            <ActivityIndicator
+                                size="large"
+                                color="dodgerblue"
+                                animating={loading}
+                            />
 
                             <FlatList
                                 data={posts}
